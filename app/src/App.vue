@@ -1,3 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import Input from './components/Input.vue';
+</script>
 
-<template>Hello World!</template>
+<template>
+  <div class="flex justify-center items-center h-screen w-screen">
+    <Input />
+  </div>
+</template>
