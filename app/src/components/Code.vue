@@ -10,7 +10,9 @@
 </script>
 
 <template>
-  <div class="max-w-[1000px] w-full overflow-hidden">
+  <div
+    class="max-w-[1000px] w-full overflow-hidden max-h-[70vh] overflow-y-auto"
+  >
     <Codemirror
       v-model="props.code"
       :extensions="extensions"

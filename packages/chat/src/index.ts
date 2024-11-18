@@ -66,6 +66,11 @@ function callListeners(event: 'ready' | 'loading', ...data: any[]) {
 
 export function getChat(): Promise<Chat> {
   return new Promise((resolve) => {
+    if (chat) {
+      resolve(chat);
+      return;
+    }
+
     addListener('ready', () => {
       resolve(chat);
     });

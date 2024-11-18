@@ -31,7 +31,7 @@
       class="bg-transparent resize-none w-full outline-none placeholder:text-on-surface-variant max-h-28 custom-scroll break-all"
       v-model="value"
       ref="textarea"
-      placeholder="Wyślij wiadomość do Qwen"
+      placeholder="Wyślij wiadomość do Code Gen"
       :style="{ height: height }"
       @input="handleInput"
       rows="1"
@@ -42,7 +42,10 @@
       :style="{
         color: value.trim().length <= 0 ? '#15130b' : '#dbc66e'
       }"
-      @click="$emit('submit-prompt', value.trim())"
+      @click="
+        $emit('submit-prompt', value.trim());
+        value = '';
+      "
     >
       <FontAwesomeIcon :icon="faPaperPlane" />
     </button>
