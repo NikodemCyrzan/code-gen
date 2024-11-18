@@ -10,10 +10,17 @@
   },
   "dependencies": {
     "@code-gen/chat": "workspace:^",
+    "@codemirror/lang-css": "^6.3.0",
+    "@codemirror/lang-html": "^6.4.9",
+    "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/lang-json": "^6.0.1",
+    "@codemirror/lang-sql": "^6.8.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/vue-fontawesome": "^3.0.8",
-    "vue": "^3.5.12"
+    "codemirror": "^6.0.1",
+    "vue": "^3.5.12",
+    "vue-codemirror": "^6.1.1"
   },
   "devDependencies": {
     "@code-gen/tailwind-config": "workspace:^",

@@ -14,3 +14,52 @@
 .custom-scroll::-webkit-scrollbar-thumb:hover {
   cursor: default;
 }
+
+.cm-gutters {
+  display: none !important;
+}
+
+.cm-announced {
+  border-color: transparent !important;
+}
+
+.ͼb,
+.ͼl {
+  color: #dbc66e;
+}
+
+.ͼg,
+.ͼj {
+  color: #96e2a9;
+}
+
+.ͼd,
+.ͼe,
+.ͼc {
+  color: #72eb90;
+}
+
+.ͼi {
+  color: #d6c078;
+}
+
+.cm-line {
+  color: #cdc6b4;
+}
+
+.cm-activeLine {
+  background-color: #dbc56e1f !important;
+}
+
+.cm-cursor {
+  border-left-color: #dabe4f !important;
+  border-left-width: 2px !important;
+}
+
+.cm-content {
+  font-size: large;
+}
+
+.cm-selectionBackground {
+  background-color: #dbc56e3d !important;
+}
