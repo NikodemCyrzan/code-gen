@@ -18,5 +18,8 @@
   "license": "ISC",
   "devDependencies": {
     "rimraf": "^6.0.1"
+  },
+  "dependencies": {
+    "@mlc-ai/web-llm": "^0.2.75"
   }
 }

@@ -40,7 +40,7 @@
       type="button"
       class="h-6 aspect-square relative top-full rounded-full"
       :style="{
-        color: value.trim().length <= 0 ? '#15130b' : '#e8e2d4'
+        color: value.trim().length <= 0 ? '#15130b' : '#dbc66e'
       }"
       @click="$emit('submit-prompt', value.trim())"
     >
