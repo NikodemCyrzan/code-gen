@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "private": false,
   "type": "module",
-  "files": [
-    "dist"
-  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.js"
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
   },
   "scripts": {
     "build": "rimraf dist && tsc",
@@ -23,3 +25,4 @@
     "@mlc-ai/web-llm": "^0.2.75"
   }
 }
+
