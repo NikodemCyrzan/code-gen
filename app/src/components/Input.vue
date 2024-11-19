@@ -41,7 +41,7 @@
       @input="handleInput"
       rows="1"
     ></textarea>
-    <LoadingCircle v-if="props.isLoading" height="100%" />
+    <LoadingCircle v-if="props.isLoading" class="h-6" />
     <button
       v-if="!props.isLoading"
       title="send prompt"

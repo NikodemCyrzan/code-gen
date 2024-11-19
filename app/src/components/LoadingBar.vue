@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import LoadingCircle from './LoadingCircle.vue';
+
   const props = defineProps({
     progress: Number
   });
@@ -16,8 +18,11 @@
         }"
       ></div>
     </div>
-    <div class="text-on-surface w-14 grow-0">
-      {{ Math.round((props.progress ?? 0) * 100) + '%' }}
+    <div class="text-on-surface w-14 grow-0 relative">
+      <LoadingCircle class="h-full" />
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        {{ Math.round((props.progress ?? 0) * 100) + '%' }}
+      </div>
     </div>
   </div>
 </template>
