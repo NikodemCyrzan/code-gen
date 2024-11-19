@@ -8,7 +8,11 @@
     isLoading: Boolean
   });
 
-  const value = ref('');
+  const emit = defineEmits<{
+    (e: 'submit-prompt', value: string): void;
+  }>();
+
+  const inputValue = ref('');
   const height = ref('auto');
 
   const textarea = useTemplateRef('textarea');
@@ -21,6 +25,20 @@
         : 'auto';
     }
   };
+
+  const handleSummit = () => {
+    emit('submit-prompt', inputValue.value.trim());
+    inputValue.value = '';
+    height.value = 'auto';
+  };
+
+  const handleKeyDown = (payload: KeyboardEvent) => {
+    if (payload.key === 'Enter' && !payload.shiftKey) {
+      handleSummit();
+      payload.preventDefault();
+      return;
+    }
+  };
 </script>
 
 <template>
@@ -30,14 +48,15 @@
     <pre
       ref="hidden"
       class="fixed pointer-events-none opacity-0"
-      v-html="value.replace(/\n/g, '\n.')"
+      v-html="inputValue.replace(/\n/g, '\n.')"
     ></pre>
     <textarea
       class="bg-transparent resize-none w-full outline-none placeholder:text-on-surface-variant max-h-72 custom-scroll break-all"
-      v-model="value"
+      v-model="inputValue"
       ref="textarea"
       placeholder="Wyślij wiadomość do Code Gen"
       :style="{ height: height }"
+      @keydown="handleKeyDown"
       @input="handleInput"
       rows="1"
     ></textarea>
@@ -48,12 +67,9 @@
       type="button"
       class="h-6 aspect-square relative rounded-full"
       :style="{
-        color: value.trim().length <= 0 ? '#15130b' : '#dbc66e'
+        color: inputValue.trim().length <= 0 ? '#15130b' : '#dbc66e'
       }"
-      @click="
-        $emit('submit-prompt', value.trim());
-        value = '';
-      "
+      @click="handleSummit"
     >
       <FontAwesomeIcon :icon="faPaperPlane" />
     </button>
