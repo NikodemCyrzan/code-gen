@@ -2,6 +2,11 @@
   import { ref, useTemplateRef } from 'vue';
   import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+  import LoadingCircle from './LoadingCircle.vue';
+
+  const props = defineProps({
+    isLoading: Boolean
+  });
 
   const value = ref('');
   const height = ref('auto');
@@ -28,7 +33,7 @@
       v-html="value.replace(/\n/g, '\n.')"
     ></pre>
     <textarea
-      class="bg-transparent resize-none w-full outline-none placeholder:text-on-surface-variant max-h-28 custom-scroll break-all"
+      class="bg-transparent resize-none w-full outline-none placeholder:text-on-surface-variant max-h-72 custom-scroll break-all"
       v-model="value"
       ref="textarea"
       placeholder="Wyślij wiadomość do Code Gen"
@@ -36,9 +41,12 @@
       @input="handleInput"
       rows="1"
     ></textarea>
+    <LoadingCircle v-if="props.isLoading" height="100%" />
     <button
+      v-if="!props.isLoading"
+      title="send prompt"
       type="button"
-      class="h-6 aspect-square relative top-full rounded-full"
+      class="h-6 aspect-square relative rounded-full"
       :style="{
         color: value.trim().length <= 0 ? '#15130b' : '#dbc66e'
       }"

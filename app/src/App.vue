@@ -7,6 +7,7 @@
 
   const progress = ref(0);
   const code = ref('');
+  const isLoadingResponse = ref(false);
 
   onMounted(() => {
     addListener('loading', (report) => {
@@ -17,8 +18,11 @@
   const handleSubmit = async (value: string) => {
     const chat = await getChat();
 
+    isLoadingResponse.value = true;
     const res = await chat.sendPrompt(value);
+
     code.value = res;
+    isLoadingResponse.value = false;
   };
 </script>
 
@@ -27,7 +31,7 @@
     class="flex flex-col gap-10 justify-center items-center h-screen w-screen"
   >
     <Code v-if="code.length > 0" :code="code" />
-    <Input @submit-prompt="handleSubmit" />
+    <Input @submit-prompt="handleSubmit" :is-loading="isLoadingResponse" />
   </div>
   <LoadingOverlay v-if="progress < 1" :progress="progress" />
 </template>
