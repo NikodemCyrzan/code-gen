@@ -3,6 +3,9 @@ module.exports = {
   content: ['index.html', './src/**/*.{js,ts,jsx,tsx,vue}'],
   theme: {
     extend: {
+      fontFamily: {
+        'roboto-mono': ['Roboto Mono', 'monospace']
+      },
       colors: {
         'primary': '#dbc66e',
         'on-primary': '#3a3000',

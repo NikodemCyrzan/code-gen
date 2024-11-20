@@ -60,6 +60,7 @@
       {{ showSuccessCopyIcon ? 'Skopiowano' : 'Kopiuj' }}
     </button>
     <Codemirror
+      class="font-roboto-mono"
       v-model="props.code"
       :extensions="extensions"
       :disabled="true"
