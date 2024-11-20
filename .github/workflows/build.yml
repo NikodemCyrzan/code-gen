@@ -51,7 +51,7 @@ jobs:
 
       - name: Update asset paths in index.html
         run: |
-          sed -i 's/\/assets\//code-gen\/assets\//g' ./docs/index.html
+          sed -i 's/\/assets\//\/code-gen\/assets\//g' ./docs/index.html
 
       - name: Commit changes
         run: |
