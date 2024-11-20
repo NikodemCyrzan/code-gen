@@ -2,16 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-.custom-scroll::-webkit-scrollbar {
+.custom-scroll::-webkit-scrollbar,
+.cm-scroller::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
-.custom-scroll::-webkit-scrollbar-thumb {
+.custom-scroll::-webkit-scrollbar-thumb,
+.cm-scroller::-webkit-scrollbar {
   background-color: #575448;
   border-radius: 100vh;
 }
 
-.custom-scroll::-webkit-scrollbar-thumb:hover {
+.custom-scroll::-webkit-scrollbar-thumb:hover,
+.cm-scroller::-webkit-scrollbar {
   cursor: default;
 }
 
