@@ -28,7 +28,7 @@
 
 <template>
   <div
-    class="flex flex-col gap-10 justify-center items-center h-screen w-screen"
+    class="flex flex-col gap-10 justify-center items-center h-screen w-screen p-5"
   >
     <Code v-if="code.length > 0" :code="code" />
     <Input @submit-prompt="handleSubmit" :is-loading="isLoadingResponse" />

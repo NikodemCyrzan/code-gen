@@ -12,7 +12,7 @@
     class="fixed inset-0 backdrop-blur-sm backdrop-brightness-75 flex items-center justify-center"
   >
     <div class="flex flex-col items-center gap-10">
-      <h1 class="text-primary text-9xl font-extrabold">Code Gen</h1>
+      <h1 class="text-primary text-9xl font-extrabold text-center">Code Gen</h1>
       <div class="text-secondary text-xl">Lokalny generator kodu</div>
       <LoadingBar :progress="props.progress" />
     </div>
