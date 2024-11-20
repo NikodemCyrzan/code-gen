@@ -7,13 +7,13 @@ on:
       - main
     paths:
       - ./app/**
-      - .packages/**
+      - ./packages/**
   pull_request:
     branches:
       - main
     paths:
       - ./app/**
-      - .packages/**
+      - ./packages/**
 
 defaults:
   run:
