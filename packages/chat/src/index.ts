@@ -1,4 +1,5 @@
 import { CreateMLCEngine } from '@mlc-ai/web-llm';
+import { findFirstCode } from './stringParsing.js';
 
 const MODEL = 'Qwen2.5-0.5B-Instruct-q4f16_1-MLC';
 const PROMPT = [
@@ -91,26 +92,6 @@ class Chat {
       ]
     });
 
-    const content = reply.choices[0].message.content as string;
-    let polishedContent = '';
-
-    let index = 0;
-    if (content.startsWith('```')) {
-      for (let i = 0; i < content.length; i++) {
-        index = i;
-
-        if (content[i] === '\n') {
-          break;
-        }
-      }
-    }
-
-    polishedContent = content.slice(index);
-
-    if (polishedContent.endsWith('```')) {
-      polishedContent = polishedContent.slice(0, -3);
-    }
-
-    return polishedContent;
+    return findFirstCode(reply.choices[0].message.content);
   }
 }

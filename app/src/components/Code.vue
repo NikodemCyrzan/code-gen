@@ -4,15 +4,17 @@
   import { faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
   import { ref } from 'vue';
+  import { sql } from '@codemirror/lang-sql';
+  import { json } from '@codemirror/lang-json';
+  import { html } from '@codemirror/lang-html';
 
   const props = defineProps({
-    code: String
+    code: { type: String, required: true },
+    language: { type: String, required: true }
   });
 
   const showSuccessCopyIcon = ref(false);
   const copyTimeout = ref();
-
-  const extensions = [javascript()];
 
   const handleCopyClick = () => {
     navigator.clipboard.writeText(props.code ?? '');
@@ -26,6 +28,24 @@
       showSuccessCopyIcon.value = false;
     }, 1500);
   };
+
+  const getLangaugeExtension = () => {
+    switch (props.language) {
+      case 'javascript':
+        return javascript();
+      case 'mysql':
+      case 'sql':
+        return sql();
+      case 'json':
+        return json();
+      case 'html':
+        return html();
+      default:
+        return javascript();
+    }
+  };
+
+  const extensions = [getLangaugeExtension()];
 </script>
 
 <template>
@@ -33,7 +53,7 @@
     class="max-w-[1000px] w-full overflow-hidden max-h-[70vh] overflow-y-auto custom-scroll relative"
   >
     <button
-      class="sticky top-1 left-full right-1 rounded bg-surface-bright h-9 text-secondary z-10 flex gap-4 justify-center items-center p-4"
+      class="sticky top-1 left-full right-1 rounded bg-surface-bright h-9 text-secondary z-10 flex gap-4 justify-center items-center p-4 mb-1"
       @click="handleCopyClick"
     >
       <FontAwesomeIcon :icon="showSuccessCopyIcon ? faCheck : faCopy" />

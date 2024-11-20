@@ -7,6 +7,7 @@
 
   const progress = ref(0);
   const code = ref('');
+  const language = ref('');
   const isLoadingResponse = ref(false);
 
   onMounted(() => {
@@ -21,7 +22,8 @@
     isLoadingResponse.value = true;
     const res = await chat.sendPrompt(value);
 
-    code.value = res;
+    code.value = res.code;
+    language.value = res.language;
     isLoadingResponse.value = false;
   };
 </script>
@@ -30,7 +32,7 @@
   <div
     class="flex flex-col gap-10 justify-center items-center h-screen w-screen p-5"
   >
-    <Code v-if="code.length > 0" :code="code" />
+    <Code v-if="code.length > 0" :code="code" :language="language" />
     <Input @submit-prompt="handleSubmit" :is-loading="isLoadingResponse" />
   </div>
   <LoadingOverlay v-if="progress < 1" :progress="progress" />

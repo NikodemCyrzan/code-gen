@@ -14,15 +14,19 @@
 
   const inputValue = ref('');
   const height = ref('auto');
+  const hiddenWidth = ref('');
 
   const textarea = useTemplateRef('textarea');
   const hidden = useTemplateRef('hidden');
 
   const handleInput = () => {
-    if (textarea && hidden) {
-      height.value = hidden.value?.clientHeight
-        ? hidden.value?.clientHeight + 'px'
+    if (textarea.value?.style && hidden.value?.style) {
+      height.value = hidden.value.clientHeight
+        ? hidden.value.clientHeight + 'px'
         : 'auto';
+
+      console.log(`${textarea.value.clientWidth}px`);
+      hiddenWidth.value = `${textarea.value.clientWidth}px`;
     }
   };
 
@@ -43,15 +47,18 @@
 
 <template>
   <div
+    ref="hidden"
+    class="fixed pointer-events-none break-words whitespace-pre-wrap opacity-0"
+    v-text="inputValue.replace(/\n/g, '\n.')"
+    :style="{
+      width: hiddenWidth
+    }"
+  ></div>
+  <div
     class="flex px-6 py-4 text-on-surface rounded-[30px] bg-surface-bright w-full max-w-[700px] gap-3 items-end"
   >
-    <pre
-      ref="hidden"
-      class="fixed pointer-events-none opacity-0"
-      v-html="inputValue.replace(/\n/g, '\n.')"
-    ></pre>
     <textarea
-      class="bg-transparent resize-none w-full outline-none placeholder:text-on-surface-variant max-h-72 custom-scroll break-all"
+      class="bg-transparent resize-none w-full outline-none placeholder:text-on-surface-variant max-h-72 custom-scroll break-all whitespace-pre-wrap"
       v-model="inputValue"
       ref="textarea"
       placeholder="Wyślij wiadomość do Code Gen"
