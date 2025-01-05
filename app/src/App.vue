@@ -3,7 +3,7 @@
   import Code from './components/Code.vue';
   import Input from './components/Input.vue';
   import LoadingOverlay from './components/LoadingOverlay.vue';
-  import { addListener, getChat } from '@code-gen/chat';
+  import { sendPrompt } from '@code-gen/chat';
 
   const progress = ref(0);
   const code = ref('');
@@ -11,16 +11,27 @@
   const isLoadingResponse = ref(false);
 
   onMounted(() => {
-    addListener('loading', (report) => {
-      progress.value = report.progress;
-    });
+    setTimeout(() => {
+      progress.value = 0.7;
+    }, 1000);
+
+    setTimeout(() => {
+      progress.value = 0.99;
+    }, 2000);
+
+    setTimeout(() => {
+      progress.value = 1;
+    }, 2200);
   });
 
   const handleSubmit = async (value: string) => {
-    const chat = await getChat();
-
     isLoadingResponse.value = true;
-    const res = await chat.sendPrompt(value);
+    const res = await sendPrompt(value);
+
+    if (!res.success) {
+      code.value = 'Coś poszło nie tak';
+      return;
+    }
 
     code.value = res.code;
     language.value = res.language;

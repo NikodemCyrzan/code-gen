@@ -13,7 +13,7 @@
   >
     <div class="flex flex-col items-center gap-10">
       <h1 class="text-primary text-9xl font-extrabold text-center">Code Gen</h1>
-      <div class="text-secondary text-xl">Lokalny generator kodu</div>
+      <div class="text-secondary text-xl">Generator kodu</div>
       <LoadingBar :progress="props.progress" />
     </div>
   </div>
